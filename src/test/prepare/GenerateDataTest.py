@@ -5,7 +5,7 @@ from prepare.GenerateData import GenerateData
 class GenerateDataTest(unittest.TestCase):
     @classmethod
     def setUpClass(self):
-        logging.basicConfig(format='%(asctime)s:%(module)s:%(levelname)s:%(message)s', level=logging.DEBUG)
+        logging.basicConfig(format='%(asctime)s:%(module)s:%(levelname)s:\n%(message)s', level=logging.DEBUG)
         logging.info('Testing GenerateData Class...')
         self.generateData = GenerateData()
         
@@ -18,7 +18,10 @@ class GenerateDataTest(unittest.TestCase):
     def testReadExcelFile(self):
         df = self.generateData.readExcelFile()
         self.assertEqual(df.shape[0], 1185)
-        logging.info(df.head())
+        logging.info(df['time'])
+        
+    def testCreateDataFrame(self):
+        self.assertTrue(self.generateData.createDataFrame('../../../data/data1.csv'))
         
 if __name__ == '__main__':
     unittest.main()
