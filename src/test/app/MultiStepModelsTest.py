@@ -2,19 +2,22 @@ import logging
 import unittest
 import pandas as pd
 import numpy as np
-import pprint
-import tensorflow as tf
-from components.Baseline import Baseline
 from components.WindowGenerator import WindowGenerator
+from app.MultiStepModels import MultiStepModels
 
-class BaselineTest(unittest.TestCase):
+class MultiStepModelsTest(unittest.TestCase):
+    OUT_STEPS = 24
+    CONV_WIDTH = 3
+    
     @classmethod
     def setUpClass(self):
         logging.basicConfig(format="%(asctime)s:%(module)s:%(levelname)s:%(message)s", level=logging.DEBUG)
-        logging.info("Testing BaselineTest Class...")
+        logging.info("Testing MultiStepModels Class...")
+        
         csv_path = '../../../data/jena_climate_2009_2016.csv'
         df = pd.read_csv(csv_path)
-        logging.info('\n' + pprint.pformat(df.head(1)))
+        df = df[5::6]
+
         # Wind velocity
         wv = df['wv (m/s)']
         bad_wv = wv == -9999.0
@@ -53,7 +56,7 @@ class BaselineTest(unittest.TestCase):
         df['Year sin'] = np.sin(timestamp_s * (2 * np.pi /year))
         df['Year cos'] = np.cos(timestamp_s * (2 * np.pi / year))
         
-        self.column_indices = {name: i for i, name in enumerate(df.columns)}
+        column_indices = {name: i for i, name in enumerate(df.columns)}
         
         n = len(df)
         train_df = df[0:int(n*0.7)]
@@ -66,9 +69,22 @@ class BaselineTest(unittest.TestCase):
         train_mean = train_df.mean()
         train_std = train_df.std()
         
-        self.train_df = (train_df - train_mean) / train_std
-        self.val_df = (val_df - train_mean) / train_std
-        self.test_df = (test_df - train_mean) / train_std
+        train_df = (train_df - train_mean) / train_std
+        val_df = (val_df - train_mean) / train_std
+        test_df = (test_df - train_mean) / train_std
+        
+        multi_window = WindowGenerator(
+            input_width=24,
+            label_width=self.OUT_STEPS,
+            shift=self.OUT_STEPS,
+            train_df=train_df,
+            val_df=val_df,
+            test_df=test_df)
+        
+        self.multiStepModels = MultiStepModels(out_steps=self.OUT_STEPS,
+                                               num_features=num_features,
+                                               conv_width=self.CONV_WIDTH,
+                                               multi_window=multi_window)
         
     def setUp(self):
         pass
@@ -76,25 +92,8 @@ class BaselineTest(unittest.TestCase):
     def tearDown(self):
         pass
     
-    def testCall(self):
-        single_step_window = WindowGenerator(input_width=1,
-                             label_width=1,
-                             shift=1,
-                             train_df=self.train_df,
-                             val_df=self.val_df,
-                             test_df=self.test_df,
-                             label_columns=['T (degC)'])
-        # logging.info('\n' + str(single_step_window))
-        baseline = Baseline(label_index = self.column_indices['T (degC)'])
-        
-        baseline.compile(loss=tf.losses.MeanSquaredError(),
-                         metrics=[tf.metrics.MeanAbsoluteError()])
-        
-        # val_performance = {}
-        # performance = {}
-        # val_performance['Baseline'] = baseline.evaluate(single_step_window.val)
-        # performance['Baseline'] = baseline.evaluate(single_step_window.test, verbose=0)
-        
+    def testStartApp(self):
+        self.multiStepModels.startApp()
     
 if __name__ == '__main__':
     unittest.main()
