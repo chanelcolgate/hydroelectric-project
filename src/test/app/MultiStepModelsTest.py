@@ -84,7 +84,8 @@ class MultiStepModelsTest(unittest.TestCase):
         self.multiStepModels = MultiStepModels(out_steps=self.OUT_STEPS,
                                                num_features=num_features,
                                                conv_width=self.CONV_WIDTH,
-                                               multi_window=multi_window)
+                                               multi_window=multi_window,
+                                               plot_col='T (degC)')
         
     def setUp(self):
         pass

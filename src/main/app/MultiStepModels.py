@@ -71,11 +71,12 @@ class RepeatBaseLine(tf.keras.Model):
 
 class MultiStepModels():
     MAX_EPOCHS = 1
-    def __init__(self, out_steps, num_features, conv_width, multi_window):
+    def __init__(self, out_steps, num_features, conv_width, multi_window, plot_col):
         self.out_steps = out_steps
         self.multi_window = multi_window
         self.conv_width = conv_width
         self.num_features = num_features
+        self.plot_col = plot_col
         
     def compile_and_fit(self, model, window, patience=2):
         early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss',
@@ -109,7 +110,7 @@ class MultiStepModels():
         
         multi_val_performance['Repeat'] = repeat_baseline.evaluate(self.multi_window.val)
         multi_performance['Repeat'] = repeat_baseline.evaluate(self.multi_window.test, verbose=0)
-        self.multi_window.plot(repeat_baseline)
+        self.multi_window.plot(repeat_baseline, plot_col=self.plot_col)
         
         # Linear
         multi_linear_model = tf.keras.Sequential([
@@ -127,7 +128,7 @@ class MultiStepModels():
         
         multi_val_performance['Linear'] = multi_linear_model.evaluate(self.multi_window.val)
         multi_performance['Linear'] = multi_linear_model.evaluate(self.multi_window.test, verbose=0)
-        self.multi_window.plot(multi_linear_model)
+        self.multi_window.plot(multi_linear_model, plot_col=self.plot_col)
         
         # CNN
         multi_conv_model = tf.keras.Sequential([
@@ -146,7 +147,7 @@ class MultiStepModels():
         
         multi_val_performance['Conv'] = multi_conv_model.evaluate(self.multi_window.val)
         multi_performance['Conv'] = multi_conv_model.evaluate(self.multi_window.test, verbose=0)
-        self.multi_window.plot(multi_conv_model)
+        self.multi_window.plot(multi_conv_model, plot_col=self.plot_col)
         
         # RNN
         multi_lstm_model = tf.keras.Sequential([
@@ -165,7 +166,7 @@ class MultiStepModels():
         
         multi_val_performance['LSTM'] = multi_lstm_model.evaluate(self.multi_window.val)
         multi_performance['LSTM'] = multi_lstm_model.evaluate(self.multi_window.test, verbose=0)
-        self.multi_window.plot(multi_lstm_model)
+        self.multi_window.plot(multi_lstm_model, plot_col=self.plot_col)
         
         # Advanced: Autogressive model
         # RNN
@@ -173,9 +174,9 @@ class MultiStepModels():
         history = self.compile_and_fit(feedback_model, self.multi_window)
         IPython.display.clear_output()
         
-        multi_val_performance['AR LSTM'] = multi_lstm_model.evaluate(self.multi_window.val)
-        multi_performance['AR LSTM'] = multi_lstm_model.evaluate(self.multi_window.test, verbose=0)
-        self.multi_window.plot(feedback_model)
+        multi_val_performance['AR LSTM'] = feedback_model.evaluate(self.multi_window.val)
+        multi_performance['AR LSTM'] = feedback_model.evaluate(self.multi_window.test, verbose=0)
+        self.multi_window.plot(feedback_model, plot_col=self.plot_col)
         
         # Performance
         x = np.arange(len(multi_performance))
