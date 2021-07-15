@@ -26,11 +26,11 @@ class GenerateDataTest(unittest.TestCase):
     # def testCreateDataFrame(self):
     #     self.assertTrue(self.generateData.createDataFrame('../../../data/data1.csv'))
         
-    # def testReadExcelFile_2(self):
-    #     logging.info(f"\n {pprint.pformat(self.generateData.readExcelFile())}")
+    def testReadExcelFile_2(self):
+        logging.info(f"\n {pprint.pformat(self.generateData.readExcelFile())}")
         
-    def testCreateDataFrame(self):
-        self.assertTrue(self.generateData.createDataFrame('../../../data/data3.csv'))
+    # def testCreateDataFrame(self):
+    #     self.assertTrue(self.generateData.createDataFrame('../../../data/data3.csv'))
     
 if __name__ == '__main__':
     unittest.main()

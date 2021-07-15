@@ -27,18 +27,19 @@ class GenerateData():
             if self.excelFile == '../../../data/SMP 2018_original.xlsx':
                 for sheet in f.sheet_names:
                     if sheet == 'SMP':
+                        # Create column names
                         names = ['date']
                         names.extend([str(i) for i in range(25) if i > 0])
                         part = pd.read_excel(f, sheet, skiprows=1, usecols="B:Z",
                                              names=names)
+                        # Transform column `date` from `datetime` to type `str`
                         part.loc[:, 'date'] = part['date'].astype(str)
+                        # Create  DataFrame contains 8640 rows and columns are `date`, `time` and `value`
                         daily_index = pd.date_range("2018-01-01", "2018-12-31", freq="D").astype('str').to_list()
                         index = pd.MultiIndex.from_product([daily_index, [i for i in range(25) if i > 0]], names=["date", "time"])
                         df = pd.DataFrame(0, index=index, columns=["value"])
                         df = df.reset_index()
                         df['date time'] = df.loc[:, 'date'].astype(str) + ' ' + df.loc[:, 'time'].astype(str)
-                        # dt = df['date time'] == '2018-01-01 1'
-                        # df['value'][dt] = 1
                         for column in [str(i) for i in range(25) if i > 0]:
                             for i in range(part.shape[0]):
                                 dt = df['date time'] == part.loc[i, 'date'] + ' ' + column
