@@ -1,4 +1,4 @@
-datetime,SMP,Temperature,Wind Speed,Visibility,Cloud Cover,PhuTai,GiaBien
+datetime,SMP,Temperature,Wind Speed,Visibility,Cloud Cover,phuTai,giaBien
 11/1/2021 0:00,1,26,12.9,10,50,21367,130
 11/1/2021 0:30,1,26,11,9.9,50,21367,128
 11/1/2021 1:00,1,25.6,7.2,15.2,88.4,20926,127
