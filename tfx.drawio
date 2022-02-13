@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-02-13T12:59:43.824Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.46" etag="XeJ0dcP1hOuNsGtPqgjE" version="16.0.3" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2022-02-13T13:58:23.938Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.46" etag="p-Z23jJ4I3CNyonebsT2" version="16.0.3" type="github" pages="5">
   <diagram id="mvCorZ3PPigmL-OjwaV1" name="Page-1">
     <mxGraphModel dx="997" dy="580" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -491,7 +491,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="_2kCPK2OZov0P-zp6JSa" name="Page-5">
-    <mxGraphModel dx="798" dy="464" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="997" dy="580" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="FweyzukfoTTHJInsPCvl-0" />
         <mxCell id="FweyzukfoTTHJInsPCvl-1" parent="FweyzukfoTTHJInsPCvl-0" />
@@ -572,6 +572,18 @@
         </mxCell>
         <mxCell id="FweyzukfoTTHJInsPCvl-34" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;font color=&quot;#b23030&quot;&gt;Phần 1:&lt;/font&gt; Tạo và xử lý dữ liệu&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#1c2a6b;" vertex="1" parent="FweyzukfoTTHJInsPCvl-35">
           <mxGeometry x="30" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FweyzukfoTTHJInsPCvl-39" value="" style="group" vertex="1" connectable="0" parent="FweyzukfoTTHJInsPCvl-1">
+          <mxGeometry x="640" y="60" width="290" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="FweyzukfoTTHJInsPCvl-36" value="ConvNet/CNN Model Design" style="rounded=1;fontSize=16;fontColor=#b23030;fillColor=#DBF0F3;align=center;whiteSpace=wrap;html=1;spacingLeft=54;" vertex="1" parent="FweyzukfoTTHJInsPCvl-39">
+          <mxGeometry width="290" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="FweyzukfoTTHJInsPCvl-38" value="&lt;b&gt;&lt;font color=&quot;#b23030&quot;&gt;Part 2:&lt;/font&gt;&lt;font color=&quot;#000000&quot; style=&quot;color: rgb(178 , 48 , 48)&quot;&gt;&amp;nbsp;&lt;/font&gt;&lt;font color=&quot;#1c2a6b&quot;&gt;Hình thành mô hình thông minh&amp;nbsp; dựa trên ConvNet&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontColor=#000000;fillColor=#DBf0f3;rotation=270;strokeColor=none;" vertex="1" parent="FweyzukfoTTHJInsPCvl-39">
+          <mxGeometry x="-110" y="135" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FweyzukfoTTHJInsPCvl-40" value="" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontColor=#1c2a6b;fillColor=#DBf0f3;" vertex="1" parent="FweyzukfoTTHJInsPCvl-1">
+          <mxGeometry x="60" y="430" width="870" height="220" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
